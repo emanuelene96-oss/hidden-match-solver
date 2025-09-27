@@ -25,31 +25,52 @@ export const Bottle = ({ color, isSelected, onClick, disabled }: BottleProps) =>
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "relative w-20 h-32 rounded-2xl transition-all duration-300 ease-out",
-        "bg-gradient-to-b border-2 border-white/20",
+        "relative transition-all duration-300 ease-out",
         "hover:scale-105 active:scale-95",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
         "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
-        bottleColorClasses[color],
         isSelected && [
           "scale-110 ring-4 ring-accent",
-          "shadow-[0_0_30px_hsl(var(--accent)_/_0.6)]",
-          "border-accent/50"
+          "shadow-[0_0_30px_hsl(var(--accent)_/_0.6)]"
         ]
       )}
     >
-      {/* Bottle highlight effect */}
-      <div className="absolute inset-x-2 top-2 h-8 bg-white/30 rounded-full blur-sm" />
-      
-      {/* Selection indicator */}
-      {isSelected && (
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent rounded-full border-2 border-white animate-pulse">
-          <div className="w-full h-full bg-accent rounded-full animate-ping" />
+      {/* Bottle shape container */}
+      <div className="relative w-20 h-32">
+        {/* Bottle neck */}
+        <div className={cn(
+          "absolute top-0 left-1/2 transform -translate-x-1/2",
+          "w-6 h-8 bg-gradient-to-b rounded-t-lg border-2 border-white/30",
+          bottleColorClasses[color]
+        )} />
+        
+        {/* Bottle body */}
+        <div className={cn(
+          "absolute top-6 left-1/2 transform -translate-x-1/2",
+          "w-16 h-24 bg-gradient-to-b rounded-3xl border-2 border-white/20",
+          bottleColorClasses[color]
+        )}>
+          {/* Bottle highlight effect */}
+          <div className="absolute inset-x-2 top-2 h-6 bg-white/40 rounded-full blur-sm" />
+          
+          {/* Bottle liquid effect */}
+          <div className={cn(
+            "absolute bottom-2 left-1/2 transform -translate-x-1/2",
+            "w-12 h-16 rounded-2xl opacity-80",
+            `bg-gradient-to-t ${bottleColorClasses[color].split(' ')[0]} ${bottleColorClasses[color].split(' ')[1]}`
+          )} />
         </div>
-      )}
-      
-      {/* Bottle base */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-3 bg-black/20 rounded-full blur-sm" />
+        
+        {/* Selection indicator */}
+        {isSelected && (
+          <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent rounded-full border-2 border-white animate-pulse z-10">
+            <div className="w-full h-full bg-accent rounded-full animate-ping" />
+          </div>
+        )}
+        
+        {/* Bottle base shadow */}
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-14 h-2 bg-black/20 rounded-full blur-sm" />
+      </div>
     </button>
   );
 };

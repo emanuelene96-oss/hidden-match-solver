@@ -28,6 +28,7 @@ export const GameBoard = ({ mode, onBackToMenu }: GameBoardProps) => {
   const [moveCount, setMoveCount] = useState(0);
   const [matchCount, setMatchCount] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [level, setLevel] = useState(1);
 
   // Initialize game
   useEffect(() => {
@@ -43,7 +44,11 @@ export const GameBoard = ({ mode, onBackToMenu }: GameBoardProps) => {
     return shuffled;
   };
 
-  const initializeGame = () => {
+  const initializeGame = (resetLevel = false) => {
+    if (resetLevel) {
+      setLevel(1);
+    }
+    
     const colors = AVAILABLE_COLORS.slice(0, bottleCount);
     const targetArrangement = shuffle(colors);
     let visibleArrangement;
@@ -95,9 +100,15 @@ export const GameBoard = ({ mode, onBackToMenu }: GameBoardProps) => {
     if (newMatchCount === bottleCount) {
       setIsComplete(true);
       toast({
-        title: "🎉 Puzzle Complete!",
-        description: `Solved in ${moveCount + 1} moves!`,
+        title: "🎉 Level Complete!",
+        description: `Level ${level} solved in ${moveCount + 1} moves! Loading next level...`,
       });
+      
+      // Auto advance to next level after a short delay
+      setTimeout(() => {
+        setLevel(prev => prev + 1);
+        initializeGame();
+      }, 2000);
     } else {
       const message = newMatchCount === 0 
         ? "No bottles match" 
@@ -124,13 +135,13 @@ export const GameBoard = ({ mode, onBackToMenu }: GameBoardProps) => {
           </Button>
           <div className="text-center">
             <h2 className="text-2xl font-bold capitalize text-foreground">
-              {mode} Mode ({bottleCount} bottles)
+              {mode} Mode - Level {level}
             </h2>
-            <p className="text-muted-foreground">Moves: {moveCount}</p>
+            <p className="text-muted-foreground">{bottleCount} bottles • Moves: {moveCount}</p>
           </div>
           <Button 
             variant="secondary" 
-            onClick={initializeGame}
+            onClick={() => initializeGame(true)}
             className="px-6"
           >
             New Game
