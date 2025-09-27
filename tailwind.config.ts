@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -38,6 +39,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          glow: "hsl(var(--accent-glow))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -46,6 +48,36 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        surface: {
+          DEFAULT: "hsl(var(--surface))",
+          elevated: "hsl(var(--surface-elevated))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        error: {
+          DEFAULT: "hsl(var(--error))",
+          foreground: "hsl(var(--error-foreground))",
+        },
+        bottle: {
+          red: "hsl(var(--bottle-red))",
+          "red-glow": "hsl(var(--bottle-red-glow))",
+          green: "hsl(var(--bottle-green))",
+          "green-glow": "hsl(var(--bottle-green-glow))",
+          blue: "hsl(var(--bottle-blue))",
+          "blue-glow": "hsl(var(--bottle-blue-glow))",
+          orange: "hsl(var(--bottle-orange))",
+          "orange-glow": "hsl(var(--bottle-orange-glow))",
+          purple: "hsl(var(--bottle-purple))",
+          "purple-glow": "hsl(var(--bottle-purple-glow))",
+          pink: "hsl(var(--bottle-pink))",
+          "pink-glow": "hsl(var(--bottle-pink-glow))",
+          teal: "hsl(var(--bottle-teal))",
+          "teal-glow": "hsl(var(--bottle-teal-glow))",
+          yellow: "hsl(var(--bottle-yellow))",
+          "yellow-glow": "hsl(var(--bottle-yellow-glow))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
